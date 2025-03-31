@@ -87,17 +87,20 @@ class ImageCaptioner:
         """
         if filename is not None and os.path.isfile(filename):
             # Use the provided image
-            image_name = filename
+            image_path = filename
         else:
             # Pick random online image
             image_name = random.choice(["bus.jpg", "zidane.jpg"])
 
-            if not os.path.isfile(image_name):
+            # Define the full path for the image
+            image_path = os.path.join("images", image_name)
+
+            if not os.path.isfile(image_path):
                 # Download the image if not exist
-                safe_download(f"https://github.com/ultralytics/assets/releases/download/v0.0.0/{image_name}")
+                safe_download(f"https://github.com/ultralytics/assets/releases/download/v0.0.0/{image_name}", image_path)
 
         # Read the image using OpenCV and convert it into the PIL format
-        return Image.fromarray(cv2.cvtColor(cv2.imread(f"{image_name}"), cv2.COLOR_BGR2RGB))
+        return Image.fromarray(cv2.cvtColor(cv2.imread(f"{image_path}"), cv2.COLOR_BGR2RGB))
     
     def annotate(self, image, results):
         """
