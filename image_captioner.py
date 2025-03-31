@@ -76,6 +76,15 @@ class ImageCaptioner:
         return parsed_answer
 
     def read_image(self, filename):
+        """
+        Reads an image from a given filename or selects a random image if no filename is provided.
+
+        Args:
+            filename (str or None): The path to the image file. If `None`, a random image is used.
+
+        Returns:
+            PIL.Image.Image: The loaded image in RGB format.
+        """
         if filename is not None:
             image_name = filename
         else:
@@ -90,6 +99,18 @@ class ImageCaptioner:
         return Image.fromarray(cv2.cvtColor(cv2.imread(f"{image_name}"), cv2.COLOR_BGR2RGB))
     
     def annotate(self, image, results):
+        """
+        Annotates an image with bounding boxes and labels using the Ultralytics annotator.
+
+        Args:
+            image (numpy.ndarray or PIL.Image.Image): The input image to annotate.
+            results (dict): A dictionary containing:
+                - "bboxes" (list): List of bounding boxes in [x1, y1, x2, y2] format.
+                - "labels" (list): Corresponding labels for each bounding box.
+
+        Returns:
+            Annotator: The annotator object containing the annotated image.
+        """
         # Plot the results on an image
         annotator = Annotator(image)  # initialize Ultralytics annotator
 
@@ -98,5 +119,17 @@ class ImageCaptioner:
         return annotator
     
     def save_image(self, result_image, path):
+        """
+        Saves an image to the specified file path.
+
+        Converts the given image array into a PIL Image and saves it to disk.
+
+        Args:
+            result_image (numpy.ndarray): The image array to be saved.
+            path (str): The file path where the image will be saved.
+
+        Returns:
+            None
+        """
         output_image = Image.fromarray(result_image)  
         output_image.save(path)  # Save the image
