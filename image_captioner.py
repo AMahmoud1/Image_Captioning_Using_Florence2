@@ -85,7 +85,8 @@ class ImageCaptioner:
         Returns:
             PIL.Image.Image: The loaded image in RGB format.
         """
-        if filename is not None:
+        if filename is not None and os.path.isfile(filename):
+            # Use the provided image
             image_name = filename
         else:
             # Pick random online image
