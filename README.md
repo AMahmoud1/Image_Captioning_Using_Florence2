@@ -21,7 +21,13 @@ I have created a script called `run.sh` to simplify running the Image Captioner.
 ```bash
 ./run.sh --max-new-tokens 1024 --num-beams 5 --input-image "images/times_square.jpg"
 ```
+## Output Samples
 
+1. Time Square Output Sample:
 ![Times Square Output](images/times_square_output.jpg)
+
+2. Bus Output Sample:
 ![Bus Output](images/bus_output.jpg)
+
+3. Zidane Output Sample:
 ![Zidane Output](images/zidane_output.jpg)
