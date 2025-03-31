@@ -17,7 +17,7 @@ fi
 source activate $VENV_NAME || conda activate $VENV_NAME
 
 # Install required packages
-pip install transformers==4.49.0 ultralytics
+pip install transformers==4.49.0 ultralytics einops timm
 
 # Run The Application
 echo "Image Captioning Application is Starting..."
